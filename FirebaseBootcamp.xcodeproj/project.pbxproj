@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		885FD2362DC7C9630053FAFA /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 885FD2352DC7C9630053FAFA /* FirebaseAuth */; };
 		88B0D2722DC59198000DDA69 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 88B0D2712DC59198000DDA69 /* FirebaseAnalytics */; };
 /* End PBXBuildFile section */
 
@@ -28,16 +29,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				88B0D2722DC59198000DDA69 /* FirebaseAnalytics in Frameworks */,
+				885FD2362DC7C9630053FAFA /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		885FD2342DC7C9630053FAFA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		88B0D2572DC564AF000DDA69 = {
 			isa = PBXGroup;
 			children = (
 				88B0D2622DC564AF000DDA69 /* FirebaseBootcamp */,
+				885FD2342DC7C9630053FAFA /* Frameworks */,
 				88B0D2612DC564AF000DDA69 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -71,6 +81,7 @@
 			name = FirebaseBootcamp;
 			packageProductDependencies = (
 				88B0D2712DC59198000DDA69 /* FirebaseAnalytics */,
+				885FD2352DC7C9630053FAFA /* FirebaseAuth */,
 			);
 			productName = FirebaseBootcamp;
 			productReference = 88B0D2602DC564AF000DDA69 /* FirebaseBootcamp.app */;
@@ -346,6 +357,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		885FD2352DC7C9630053FAFA /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 88B0D2702DC59198000DDA69 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
 		88B0D2712DC59198000DDA69 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 88B0D2702DC59198000DDA69 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
