@@ -13,18 +13,22 @@ final class SignInEmailViewModel: ObservableObject {
     @Published var email: String = ""
     @Published var password: String = ""
     
+    func signUp() async throws {
+        guard !email.isEmpty, !password.isEmpty else {
+            print("Email and password must not be empty")
+            return
+        }
+
+        try await AuthenticationManager.shared.createUser(email: email, password: password)
+    }
+    
     func signIn() async throws {
         guard !email.isEmpty, !password.isEmpty else {
             print("Email and password must not be empty")
             return
         }
-        do {
-            let returnedUserData = try await AuthenticationManager.shared.createUser(email: email, password: password)
-            print("Successfully")
-            print(returnedUserData)
-        } catch {
-            print("Error: \(error.localizedDescription)")
-        }
+
+        try await AuthenticationManager.shared.signInUser(email: email, password: password)
     }
     
 }
@@ -32,6 +36,7 @@ final class SignInEmailViewModel: ObservableObject {
 struct SignInEmailView: View {
     
     @StateObject private var viewModel = SignInEmailViewModel()
+    @Binding var showSignInView: Bool
     
     var body: some View {
         VStack {
@@ -47,7 +52,17 @@ struct SignInEmailView: View {
             Button {
                 Task {
                     do {
+                        try await viewModel.signUp()
+                        showSignInView = false
+                        return
+                    } catch {
+                        print("Sign in failed: \(error)")
+                    }
+                    
+                    do {
                         try await viewModel.signIn()
+                        showSignInView = false
+                        return
                     } catch {
                         print("Sign in failed: \(error)")
                     }
@@ -69,6 +84,7 @@ struct SignInEmailView: View {
 
 #Preview {
     NavigationStack {
-        SignInEmailView()
+        SignInEmailView(showSignInView: .constant(false))
+            .navigationTitle("Sign In With Email")
     }
 }

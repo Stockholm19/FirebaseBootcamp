@@ -18,7 +18,7 @@ struct RootView: View {
         }
         .onAppear{
             do {
-                let authuser = try AuthenticationManager.shared.getAuthenticatedUser()
+                let _ = try AuthenticationManager.shared.getAuthenticatedUser()
                 self.showSignInView = false
             } catch {
                 self.showSignInView = true
@@ -26,7 +26,7 @@ struct RootView: View {
         }
         .fullScreenCover(isPresented: $showSignInView) {
             NavigationStack {
-                AuthenticationView()
+                AuthenticationView(showSignInView: $showSignInView)
                     .navigationTitle("Authentication")
             }
         }
